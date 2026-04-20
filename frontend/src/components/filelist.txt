@@ -1,0 +1,11 @@
+.
+./Dashboard.tsx
+./MahasiswaModal.tsx
+./DetailModal.tsx
+./Report.tsx
+./Bimbingan.tsx
+./Project.tsx
+./Settings.tsx
+./Dosen.tsx
+./Mahasiswa.tsx
+./filelist.txt

@@ -1,0 +1,20 @@
+FROM golang:alpine AS builder
+
+WORKDIR /app
+COPY go.mod go.sum ./
+RUN go mod download
+COPY . .
+RUN go build -o simta-backend .
+
+FROM alpine:latest
+WORKDIR /app
+# Add necessary libraries for Go bin
+RUN apk --no-cache add ca-certificates tzdata
+
+COPY --from=builder /app/simta-backend .
+
+# Make directory for uploads (logo, reports)
+RUN mkdir -p /app/uploads
+
+EXPOSE 3536
+CMD ["./simta-backend"]

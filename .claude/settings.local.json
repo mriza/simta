@@ -1,0 +1,40 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(go build *)",
+      "Bash(sqlite3 simta.db \"SELECT id, nidn, CASE WHEN password IS NULL OR password='' THEN 'NULL/EMPTY' ELSE 'SET' END FROM dosen LIMIT 5;\")",
+      "Bash(sqlite3 simta.db \"SELECT COUNT\\(*\\) FROM mahasiswa WHERE password IS NULL OR password='';\")",
+      "Bash(sqlite3 simta.db \"SELECT COUNT\\(*\\) FROM dosen WHERE password IS NULL OR password='';\")",
+      "Bash(echo \"Build exit: $?\")",
+      "Bash(./simta-backend)",
+      "Bash(echo \"PID: $!\" sleep 20 cat /tmp/simta.log echo \"---port---\" ss -tlnp)",
+      "Bash(echo \"Build: $?\")",
+      "Bash(echo \"PID: $!\" sleep 25 cat /tmp/simta.log echo \"---port---\" ss -tlnp)",
+      "Bash(curl -s -X POST http://localhost:3536/api/login -H 'Content-Type: application/json' -d '{\"nidn\":\"admin\",\"password\":\"admin123\"}')",
+      "Bash(python3 -c \"import sys,json; d=json.load\\(sys.stdin\\); print\\('role:', d.get\\('role'\\), '| user_id:', d.get\\('user_id'\\), '| token OK:', bool\\(d.get\\('token'\\)\\)\\)\")",
+      "Bash(curl -s -X POST http://localhost:3536/api/login -H 'Content-Type: application/json' -d '{\"nidn\":\"1012078901\",\"password\":\"password\"}')",
+      "Bash(python3 -c \"import sys,json; d=json.load\\(sys.stdin\\); print\\('role:', d.get\\('role'\\), '| user_id:', d.get\\('user_id'\\), '| error:', d.get\\('error'\\)\\)\")",
+      "Bash(curl -s -X POST http://localhost:3536/api/login -H 'Content-Type: application/json' -d '{\"nidn\":\"22254321013\",\"password\":\"22254321013\"}')",
+      "Bash(curl -s -X POST http://localhost:3536/api/login -H 'Content-Type: application/json' -d '{\"nidn\":\"admin\",\"password\":\"wrong\"}')",
+      "Bash(python3 -c \"import sys,json; d=json.load\\(sys.stdin\\); print\\('error:', d.get\\('error'\\)\\)\")",
+      "Bash(npx tsc *)",
+      "Bash(echo \"TSC exit: $?\")",
+      "Bash(sqlite3 simta.db \"SELECT COUNT\\(*\\) FROM mahasiswa; SELECT COUNT\\(*\\) FROM bimbingan; SELECT COUNT\\(*\\) FROM config; SELECT COUNT\\(*\\) FROM events; SELECT COUNT\\(*\\) FROM semesters; SELECT COUNT\\(*\\) FROM artefak;\")",
+      "Bash(sqlite3 simta.db \".dump mahasiswa\")",
+      "Bash(sqlite3 simta.db \"SELECT id,nim,nama,bab,rutin,bimb1,bimb2,terakhir,status_alat,fitur,kendala_skripsi,kendala_alat,hp,hp_ortu,alamat,pb1,pb2,semester_id,master_id,status_proses,password FROM mahasiswa LIMIT 2;\")",
+      "Bash(sqlite3 simta.db \"SELECT * FROM config; SELECT * FROM semesters;\")",
+      "Bash(psql -h localhost -p 5433 -U simta_user -d simta -c ' *)",
+      "Bash(podman exec *)",
+      "Bash(python3 -)",
+      "Bash(pkill -f simta-backend)",
+      "Bash(./simta-backend-new)",
+      "Read(//tmp/**)",
+      "Bash(pkill -f \"simta-backend\")",
+      "Bash(echo \"PID=$!\")",
+      "Bash(curl -s http://localhost:3536/api/login -X POST -H 'Content-Type: application/json' -d '{\"nidn\":\"admin\",\"password\":\"admin123\"}')",
+      "Bash(python3 -m json.tool)",
+      "Bash(curl -s http://localhost:3536/api/login -X POST -H 'Content-Type: application/json' -d '{\"nidn\":\"1012078901\",\"password\":\"password\"}')",
+      "Bash(python3 -c \"import sys,json; d=json.load\\(sys.stdin\\); print\\(f'dosen: {len\\(d\\)} rows'\\)\")"
+    ]
+  }
+}

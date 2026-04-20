@@ -1,0 +1,26 @@
+# Backend binaries and build artifacts
+backend/simta-backend
+backend/simta
+backend/server
+
+# Database files (use PostgreSQL in production)
+backend/*.db
+backend/*.sqlite
+backend/*.sqlite3
+
+# Uploaded files (runtime data, not source)
+backend/uploads/*
+!backend/uploads/.gitkeep
+
+# Logs
+backend/*.log
+*.log
+
+# Frontend build output
+frontend/dist/
+frontend/node_modules/
+
+# Environment files
+.env
+.env.local
+.env.production.local
